@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# High-Performance Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A performant and responsive **User Management Admin Dashboard** built with React, designed to handle large datasets (10,000+ users) efficiently without UI lag.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React (Latest)
+- TypeScript
+- Tailwind CSS
+- React Router (for URL state sync)
+- Virtualization (windowing for performance)
 
-## React Compiler
+## 📌 Key Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### ✅ Virtualized Data Grid
+- Efficiently renders 10,000+ records
+- Only visible rows are mounted (windowing)
+- Smooth scrolling with no browser freeze
 
-## Expanding the ESLint configuration
+### ✅ URL-Synced State
+Application state persists across refresh:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `?q=jane` → Search query
+- `?sort=name&order=asc` → Sorting state
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Refreshing the page restores the exact same state.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### ✅ Debounced Global Search
+- Filters by **Name** and **Email**
+- 300ms debounce to prevent UI blocking
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ✅ Sorting
+- Sort by Name, Email, or Status
+- Works correctly on filtered results
+- Synced with URL query parameters
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ✅ Optimistic UI Updates
+- Toggle user status (Active / Inactive)
+- Immediate UI update
+- Simulated API delay (1 second)
+- 10% random failure simulation
+- Automatic rollback + Toast error message
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### ✅ Light / Dark Mode
+- Implemented using React Context
+- Theme preference saved in localStorage
+- Fully styled dark theme UI
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📂 Project Structure
+src/
+├── components/
+├── context/
+├── hooks/
+├── types/
+└── App.tsx
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone Repository
+git clone https://github.com/NeuIq-AI/admin-dashboard.git
+
+### 2️⃣ Navigate to Project
+cd admin-dashboard
+
+### 3️⃣ Install Dependencies
+npm install
+
+### 4️⃣ Run Development Server
+npm run dev
+
+Open the URL shown in the terminal (usually `http://localhost:5173`).
